@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Spoiler</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        border: none;
+        font-family: sans-serif;
+      }
+    
+      html, body, #TextField {
+        height: 100%;
+      }
+      
+      #TextField {
+        font-size: 25vmin;
+        text-align: center;
+        width: 100%;
+      }
+    </style>
+    <script>
+      addEventListener("DOMContentLoaded", () => {
+        if (window.location.hash) {
+          TextField.value = atob(window.location.hash.slice(1));
+        }
+        else {
+          TextField.focus();
+        }
+      });
+    
+      function onInput() {
+        history.replaceState(null, '', '#' + btoa(TextField.value));
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" id="TextField" oninput="onInput()"/>
+  </body>
+</html>
+
